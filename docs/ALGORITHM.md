@@ -18,6 +18,9 @@ seed 42's 2D `(0.5,0.5)` value `0.2849549233317711` and 3D `(0.5,0.5,0.5)` value
 `-0.10635038160140473`. At t=0.25 the exact weight is `0.103515625`. Tests use these
 independent expectations rather than a second call to the implementation under test.
 Lattice tests require exact results; interpolation tests allow 1e-14 absolute difference.
+Bulk/scalar comparisons use the same tolerance because independently evaluated coordinate
+expressions and inlined fractal arithmetic may round differently. In particular, adding a
+negative step and subtracting its magnitude need not produce identical machine instructions.
 The boundary-continuity check uses 1e-9 for points 1e-5 either side of a lattice plane.
 Those are test tolerances, not universal mathematical error bounds.
 

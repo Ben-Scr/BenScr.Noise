@@ -3,6 +3,7 @@
 #include <array>
 #include <cmath>
 #include <cstdint>
+#include <iomanip>
 #include <iostream>
 #include <limits>
 #include <stdexcept>
@@ -26,7 +27,12 @@ void Check(bool condition, const char *message)
 
 void Near(double actual, double expected, double tolerance = 1e-14)
 {
-    Check(std::isfinite(actual) && std::abs(actual - expected) <= tolerance, "Reference mismatch.");
+    if (!std::isfinite(actual) || std::abs(actual - expected) > tolerance)
+    {
+        std::cerr << std::setprecision(17) << "Actual: " << actual << ", expected: " << expected
+                  << ", absolute tolerance: " << tolerance << '\n';
+        throw std::runtime_error("Reference mismatch.");
+    }
 }
 
 template <typename Exception, typename Action> void Throws(Action action)
@@ -236,8 +242,7 @@ int main()
                      {
                          Near(field[y * grid.Width + x],
                               noise.Sample2D(grid.OriginX + static_cast<double>(x) * grid.StepX,
-                                             grid.OriginY + static_cast<double>(y) * grid.StepY),
-                              0);
+                                             grid.OriginY + static_cast<double>(y) * grid.StepY));
                      }
                  }
              });
@@ -253,12 +258,11 @@ int main()
                      {
                          for (std::size_t x = 0; x < grid.Width; ++x)
                          {
-                             Near(
-                                 field[(z * grid.Height + y) * grid.Width + x],
-                                 noise.Sample3D(grid.OriginX + static_cast<double>(x) * grid.StepX,
-                                                grid.OriginY + static_cast<double>(y) * grid.StepY,
-                                                grid.OriginZ + static_cast<double>(z) * grid.StepZ),
-                                 0);
+                             Near(field[(z * grid.Height + y) * grid.Width + x],
+                                  noise.Sample3D(grid.OriginX + static_cast<double>(x) * grid.StepX,
+                                                 grid.OriginY + static_cast<double>(y) * grid.StepY,
+                                                 grid.OriginZ +
+                                                     static_cast<double>(z) * grid.StepZ));
                          }
                      }
                  }
@@ -276,8 +280,7 @@ int main()
                      {
                          Near(field[y * 4 + x],
                               noise.SampleFractal2D(-0.1 + static_cast<double>(x) * 0.1,
-                                                    0.2 - static_cast<double>(y) * 0.2, settings),
-                              0);
+                                                    0.2 - static_cast<double>(y) * 0.2, settings));
                      }
                  }
              });
@@ -296,8 +299,7 @@ int main()
                              Near(field[(z * 2 + y) * 2 + x],
                                   noise.SampleFractal3D(static_cast<double>(x) * 0.1,
                                                         static_cast<double>(y) * 0.2,
-                                                        static_cast<double>(z) * -0.3),
-                                  0);
+                                                        static_cast<double>(z) * -0.3));
                          }
                      }
                  }

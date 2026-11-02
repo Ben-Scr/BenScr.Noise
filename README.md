@@ -73,7 +73,7 @@ tests and examples default to off when this library is not the top-level project
 | `Sample2D`, `Sample3D` | Quintic-interpolated lattice value noise in `[-1,1]`; 2D equals the 3D slice at z=0. |
 | `SampleFractal2D`, `SampleFractal3D` | Amplitude-weighted octave sum divided by total amplitude, bounded to `[-1,1]`. |
 | `Fill2D`, `Fill3D` | Fill an exact-sized `std::span<double>` in row-major order, x fastest. |
-| `FillFractal2D`, `FillFractal3D` | The same layout and values as individual fractal samples. |
+| `FillFractal2D`, `FillFractal3D` | The same layout and sampling formula as individual fractal samples. |
 
 All coordinates must be finite and within `[-1e9,1e9]`, including each scaled fractal
 coordinate. `Octaves` is 1–32, `Frequency` is finite and positive, `Lacunarity` is finite
@@ -124,6 +124,8 @@ local coordinates preserves more fractional precision. The integer hash and latt
 conversion are exact under the default floating-point environment, while interpolation,
 fractal accumulation, compiler contraction, and standard-library implementations can cause
 small rounding differences. There is no cross-toolchain bit-identical floating-point promise.
+Bulk and scalar evaluations may also differ by rounding when coordinate expressions or
+arithmetic are compiled differently; use a tolerance for floating-point comparisons.
 Do not enable fast-math or alter the default floating-point environment when relying on
 the finite-input checks and documented bounds.
 
