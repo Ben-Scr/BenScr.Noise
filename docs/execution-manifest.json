@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "package_id": "BenScr.Noise",
+  "version": "1.0.0",
+  "algorithm_version": 1,
+  "runtime_dependencies": [],
+  "verification_matrix": [
+    {
+      "host": "Windows x64",
+      "compiler": "MSVC 19.44.35228 / v143",
+      "cmake": "4.3.1-msvc1",
+      "configuration": "Release",
+      "contract_cases": 29,
+      "standalone_header": "passed",
+      "example": "passed",
+      "status": "executed_passed_before_release_pack"
+    },
+    {
+      "host": "Windows Server 2022 x64",
+      "compiler": "MSVC v143",
+      "checks": "contracts, header, relocated CMake consumer, NuGet Debug and Release consumers",
+      "status": "configured_ci_requires_run_evidence"
+    },
+    {
+      "host": "Ubuntu 24.04 x64",
+      "compiler": "GCC 14 and Clang 18",
+      "checks": "contracts, header, relocated CMake consumer, ASan and UBSan",
+      "status": "configured_ci_requires_run_evidence"
+    }
+  ],
+  "unverified": ["macOS", "ARM", "x86", "MSVC sanitizers", "fast-math", "nondefault floating-point environment"],
+  "release_evidence": "Exact source commit, package hash, completed checks, and timestamp are generated in artifacts/verify-*/release-manifest.json. Public-feed verification is separate.",
+  "publication": "not_inferred_from_local_or_ci_verification"
+}

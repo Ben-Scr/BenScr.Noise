@@ -1,0 +1,6 @@
+{
+  "sha256": "39bde5f5f026de7b2b70bc5628aaea2b4814e195a516941815e5a48dd744bc28",
+  "algorithm_version": 1,
+  "header": "include/benscr/noise/generator.hpp",
+  "schema_version": 1
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package>
+  <metadata>
+    <id>BenScr.Noise</id><version>1.0.0</version><authors>Ben Schneider</authors>
+    <description>C++20 deterministic seeded 2D and 3D coherent value noise, normalized fractal composition, and validated bulk field filling. Native source distribution compiled with the consumer's toolchain.</description>
+    <projectUrl>https://github.com/Ben-Scr/BenScr.Noise</projectUrl>
+    <repository type="git" url="https://github.com/Ben-Scr/BenScr.Noise" commit="$commit$" />
+    <license type="file">LICENSE.txt</license><readme>README.md</readme><icon>icon.png</icon>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance><tags>native noise procedural terrain fractal cpp20</tags>
+  </metadata>
+  <files>
+    <file src="include\benscr\noise\generator.hpp" target="include\benscr\noise" />
+    <file src="src\generator.cpp" target="src" />
+    <file src="package\BenScr.Noise.props" target="build\native" />
+    <file src="package\BenScr.Noise.targets" target="build\native" />
+    <file src="LICENSE.txt" target="" /><file src="README.md" target="" />
+    <file src="branding\BenScr_Icon_Master.png" target="icon.png" />
+  </files>
+</package>
